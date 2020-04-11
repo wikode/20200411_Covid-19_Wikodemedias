@@ -82,8 +82,6 @@ async function appController(){
 }
 
 
-
-
 const getSelectedDatas = async () => {
     // Récup date et mettre les données pour ce pays < date dans le graph
 
@@ -180,8 +178,6 @@ const getWorldDatas = async () => {
     domEl.casMortsMondePourcentage.textContent = pourcentageMort;
 };
 
-
-
 function sommeValeursMondePour(array, parametre){
     const sommeArray = array.reduce((acc, cur) => {
         const arrayDeValeurPays = cur[1];
@@ -235,11 +231,6 @@ function miseAuBonFormatDate(val){
 }
 
 const hier = getYesterdayDate();
-
-
-
-
-
 
 
 
