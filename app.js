@@ -86,7 +86,6 @@ async function appController(){
 
 const getSelectedDatas = async () => {
     // Récup date et mettre les données pour ce pays < date dans le graph
-    console.log("j'ai reçu un click");
 
     const datas = await getDatas();
     const domEl = getDOM();
@@ -347,7 +346,7 @@ function dateSimpleComplete(date){
     let annee = dateSplit[0];
     let moisListe = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
 
-    return `${jour} ${moisListe[parseInt(mois)]} ${annee}`;
+    return `${jour} ${moisListe[parseInt(mois)-1]} ${annee}`;
 }
 
 function dateShort(date){
