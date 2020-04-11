@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>Covid-19 App</title>
+</head>
+<body>
+    <div class="container">
+        <div class="intro">
+            <h1 class="title title-1">Suivi du COVID-19</h1>
+            <p>Cette application a pour but de se rendre compte visuellement de l'impact du virus sur le monde, afin de sensibiliser et de faire adopter les bons gestes pour en stopper la propagation.</p>
+        </div>
+        
+
+        <div class="partieGraph">
+            <h2 class="title title-2">&#128312; Sélectionnez les paramètres souhaités :</h2>
+            <div class="inputs">
+                
+                <select name="pays" id="choixPays">
+                </select>
+                <input type="date" name="depuis" id="depuis" min="2020-01-22">
+                
+                <button id="chercher">Afficher</button>
+        
+                <div id="infoSelection"></div>
+            </div>
+        
+            <div id="graphiqueDiv"></div>
+        </div>
+        
+
+
+
+
+        <div class="datas">
+            <h2 class="title title-2">&#128312; Données :</h2>
+            <p class="align-center">Données pour le pays sélectionné</p>
+
+            <div class="dataHier datasDivWrap">
+                <h3 class="title title-3">Bilan de la veille :</h3>
+        
+                <div id="casNouveauxHier" class="dataItem warning">
+                    <p id="casNouveauxHierStat"></p>
+                    <p>Nouveaux cas</p>
+                </div>
+                <div id="casGuerisHier" class="dataItem success">
+                    <p id="casGuerisHierStat"></p>
+                    <p>Guéris</p>
+                </div>
+                <div id="casMortsHier" class="dataItem alert">
+                    <p id="casMortsHierStat"></p>
+                    <p>Décès</p>
+                </div>
+            </div>
+        
+        
+        
+            <div class="dataPeriode datasDivWrap">
+                <h3 class="title title-3">Bilan sur la période sélectionnée :</h3>
+                <div id="casNouveauxPeriode" class="dataItem warning">
+                    <p id="casNouveauxPeriodeStat"></p>
+                    <p>Nouveaux cas</p>
+                </div>
+                <div id="casGuerisPeriode" class="dataItem success">
+                    <p id="casGuerisPeriodeStat"></p>
+                    <p>Guéris</p>
+                </div>
+                <div id="casMortsPeriode" class="dataItem alert">
+                    <p id="casMortsPeriodeStat"></p>
+                    <p>Décès</p>
+                </div>
+            </div>
+            
+        
+        
+        
+        
+        
+            <div class="datasTotal datasDivWrap">
+                <h3 class="title title-3">Bilan total (depuis le 22 Janvier 2020):</h3>
+                
+                <div id="nbEnCours" class="dataItem warning">
+                    <p class="titreStat">Cas actuels :</p>
+                    <p class="valeurStat" id="valeurStatEnCours"></p>
+                    <p class="valeurStatPourc" id="valeurStatPourcEnCours"></p>
+                </div>
+                <div id="nbGueris" class="dataItem success">
+                    <p class="titreStat">Guéris :</p>
+                    <p class="valeurStat" id="valeurStatGueris"></p>
+                    <p class="valeurStatPourc" id="valeurStatPourcGueris"></p>
+                </div>
+                <div id="nbMorts" class="dataItem alert">
+                    <p class="titreStat">Décès :</p>
+                    <p class="valeurStat" id="valeurStatMorts"></p>
+                    <p class="valeurStatPourc" id="valeurStatPourcMorts"></p>
+                </div>
+                <div id="nbTotal" class="totalItem">
+                    <p class="titreStat">Nombre de personnes contaminées au total :</p>
+                    <p class="valeurStat" id="valeurStatTotal"></p>
+                </div>
+
+            </div>
+        </div>
+        
+        <div class="coronaBilan">
+            <div class="dataMondeTotal">
+                <h2 class="title title-2">&#128312; Le Coronavirus COVID-19 dans le monde</h2>
+                <p>Depuis le 22 Janvier 2020, ce virus ...</p>
+
+                <div class="datasDivWrap">
+                    <div id="casNouveauxMonde" class="dataItem warning">
+                        <p>C'est<span id="casNouveauxMondeStat" class="chiffreMonde"></span> Personnes Contaminées</p>
+                    </div>
+                    <div id="casGuerisMonde" class="dataItem success">
+                        <p>Dont <span id="casGuerisMondeStat" class="chiffreMonde"></span> Personnes Guéries</p>
+                        <p>(Soit <span id="casGuerisMondePourcentage"></span>%)</p>
+                    </div>
+                    <div id="casMortsMonde" class="dataItem alert">
+                        <p>Dont <span id="casMortsMondeStat" class="chiffreMonde"></span> Décès</p>
+                        <p>(Soit <span id="casMortsMondePourcentage"></span>%)</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stopCorona">
+                <h2 class="title title-2">&#128312; Stoppons la propagation du virus</h2>
+                <p>Il existe des moyens simples à mettre en oeuvre pour stopper au plus vite la propagation du virus.</p>
+                <p class="mb3"> Pour en savoir plus sur toute la situation, rendez-vous sur le <a target="_blank" href="https://www.gouvernement.fr/info-coronavirus">site du gouvernement</a>.</p>
+                <h3 class="title title-3 barriereTitle">5 Gestes Barrière</h3>
+                
+                <div class="listeGestes">
+                    <p class="listePrev"><span class="listeNumero">1</span>Prévention.<span class="listeDescription">Restez chez vous. </span></p>
+                    <p class="listePrev"><span class="listeNumero">2</span>Coude.<span class="listeDescription">Toussez dedans. </span></p>
+                    <p class="listePrev"><span class="listeNumero">3</span>Visage.<span class="listeDescription">Evitez de le toucher. </span></p>
+                    <p class="listePrev"><span class="listeNumero">4</span>Distances.<span class="listeDescription">Gardez-les. </span></p>
+                    <p class="listePrev"><span class="listeNumero">5</span>Mains.<span class="listeDescription">Lavez-les souvent. </span></p>
+                </div>
+
+                <p class="msgFin">Prenez soin de vous. Restez chez vous.</p>
+
+                
+            </div>
+        </div>
+            
+        
+
+    
+    </div>
+
+    <footer>
+        <a target="_blank" href="https://www.instagram.com/wikodemedias/">Wikodemedias</a> projet 2020 &copy; - Utilisation de <a target="_blank" href="https://github.com/pomber/covid19">l'API de Pomber</a> & de <a target="_blank" href="https://www.chartjs.org/">Chartjs</a>
+    </footer>
+    
+
+    <script src="app.js"></script>
+</body>
+</html>
